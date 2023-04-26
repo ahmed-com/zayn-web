@@ -1,0 +1,8 @@
+{
+    "message": "hello i18n !!",
+    "nested": {
+      "msg1": "message 1",
+      "msg2": "message 2"
+    },
+    "homeMsg": "الريسيه"
+  }

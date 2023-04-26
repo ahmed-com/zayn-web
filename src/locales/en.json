@@ -1,0 +1,39 @@
+{
+  "message": "hello i18n !!",
+  "nested": {
+    "msg1": "message 1",
+    "msg2": "message 2",
+    "msg3": "message 3"
+  },
+  "homeMsg": "Home",
+  "components": {
+    "NewMessagesDivider": {
+      "msg": "New Messages"
+    },
+    "DataTable":{
+      "search": "Search",
+      "typeHere": "Type here to search",
+      "itemsPerPage": "Items per page:",
+      "import": "Import",
+      "export": "Export",
+      "print": "Print",
+      "noData": "No data available",
+      "cancelImport": "Cancel",
+      "importCardTitle": "Import Data From Excel File",
+      "dragAndDrop": "Drag and drop your file here or click",
+      "downloadTemplate": "Download Template",
+      "selectFile": "Select File",
+      "importTemplateSheetName": "template",
+      "useTemplateSuggestion": "Please conider using the template.",
+      "paginationMessage": "Showing {from} to {to} of {total} entries",
+      "cancelFilter": "Cancel",
+      "applyFilters": "Apply",
+      "filter": "Filter",
+      "filterFrom": "{headerText} From :",
+      "filterTo": "{headerText} To :",
+      "errors":{
+        "missingHeader": "Header \"{header}\" is missing"
+      }
+    }
+  }
+}

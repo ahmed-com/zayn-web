@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
+
+::-webkit-scrollbar{
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb{
+    border-radius: 100vw;
+    background-color: rgb(var(--v-theme-primary));
+}
+
+::selection {
+    --v-theme-overlay-multiplier: var(--v-theme-primary-lighten-3-overlay-multiplier);
+    background: rgb(var(--v-theme-primary-lighten-3)) !important;
+    color: rgb(var(--v-theme-on-primary-lighten-3)) !important;
+}
+
+::-moz-selection {
+    --v-theme-overlay-multiplier: var(--v-theme-primary-lighten-3-overlay-multiplier);
+    background: rgb(var(--v-theme-primary-lighten-3)) !important;
+    color: rgb(var(--v-theme-on-primary-lighten-3)) !important;
+}
+
+* {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+input[type='text']:focus-visible {
+    outline: none;
+}
+
+table{
+    border-collapse: collapse;
+    border-scpacing: 0;
+}
