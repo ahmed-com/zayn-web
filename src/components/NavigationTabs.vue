@@ -117,9 +117,7 @@
 		z-index: -1;
 	}
 
-	.transition-all{
-		transition: all 300ms ease-in-out;
-	}
+	
 	.tabs-container {
 		position: fixed;
 		top: v-bind('tabsTopValue');
@@ -143,31 +141,4 @@
 		width: 100%;
 	}
 
-	.slide-left-enter-active,
-	.slide-left-leave-active,
-	.slide-right-enter-active,
-	.slide-right-leave-active {
-		transition: all 300ms ease-out;
-		position: absolute;
-	}
-	.slide-left-enter-to,
-	.slide-right-leave-from {
-		position: absolute;
-		right: 0%;
-	}
-	.slide-left-enter-from,
-	.slide-right-leave-to {
-		position: absolute;
-		right: -100%;
-	}
-	.slide-left-leave-to,
-	.slide-right-enter-from {
-		position: absolute;
-		left: -100%;
-	}
-	.slide-left-leave-from,
-	.slide-right-enter-to {
-		position: absolute;
-		left: 0%;
-	}
-</style>
+	</style>

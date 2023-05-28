@@ -10,7 +10,6 @@
         <main-search-form></main-search-form>
         <v-spacer></v-spacer>
         <v-app-bar-nav-icon v-if="hasRightDrawer" @click="toggleRightDrawer"></v-app-bar-nav-icon>
-
     </v-app-bar>
 </template>
 

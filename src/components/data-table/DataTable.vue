@@ -1,6 +1,6 @@
 <script lang="ts">
 export default {
-    name: "DataTable",
+  name: "DataTable",
 }
 </script>
 
@@ -12,31 +12,31 @@ export default {
         <div>
           <slot class="d-inline mx-2" color="primary" name="create-btn">
           </slot>
-          <import-x-l-s-x :is-importing="props.isImporting" @import="emit('import', $event)" :import-template-headers="props.importTemplateHeaders" :disabled="props.isImporting"></import-x-l-s-x>
+          <import-x-l-s-x :is-importing="props.isImporting" @import="emit('import', $event)"
+            :import-template-headers="props.importTemplateHeaders" :disabled="props.isImporting"></import-x-l-s-x>
         </div>
       </div>
       <div class="d-flex justify-space-between">
         <div class="text-h6">
           {{ t('components.DataTable.search') }}:
-          <input :disabled="!!loadingError" class="bg-surface rounded-lg px-2" :placeholder="t('components.DataTable.typeHere')" v-model="searchTerm"
-            type="text">
+          <input :disabled="!!loadingError" class="bg-surface rounded-lg px-2"
+            :placeholder="t('components.DataTable.typeHere')" v-model="searchTerm" type="text">
         </div>
         <div>
-          <v-btn class="d-inline bg-primary mx-2" :loading="props.isLoading" icon="mdi-refresh" @click="emit('refresh')"></v-btn>
-          <export-x-l-s-x :page-table="pageTable" :filename="props.title" :disabled="!!props.loadingError || props.isLoading"></export-x-l-s-x>
+          <v-btn class="d-inline bg-primary mx-2" :loading="props.isLoading" icon="mdi-refresh"
+            @click="emit('refresh')"></v-btn>
+          <export-x-l-s-x :page-table="pageTable" :filename="props.title"
+            :disabled="!!props.loadingError || props.isLoading"></export-x-l-s-x>
           <print-table :page-table="pageTable" :disabled="!!props.loadingError || props.isLoading"></print-table>
-          <table-filter :disabled="!!props.loadingError || props.isLoading" :is-loading="props.isLoading" :headers="props.headers" v-model:filter-by="filterBy"></table-filter>
+          <table-filter :disabled="!!props.loadingError || props.isLoading" :is-loading="props.isLoading"
+            :headers="props.headers" v-model:filter-by="filterBy"></table-filter>
         </div>
       </div>
     </div>
     <v-progress-linear v-if="showLoader" height="8" indeterminate color="primary"></v-progress-linear>
-    <div class="rounded-b-lg pa-4 overflow-x-auto position-relative">
-      <v-overlay
-        v-model="showLoader"
-        contained
-        class="d-flex position-absolute w-100 justify-center align-center"
-      >
-      <v-progress-circular indeterminate size="100" width="10" color="primary"></v-progress-circular>
+    <div class="rounded-b-lg py-4 mx-4 overflow-x-auto position-relative">
+      <v-overlay v-model="showLoader" contained class="d-flex position-absolute w-100 justify-center align-center">
+        <v-progress-circular indeterminate size="100" width="10" color="primary"></v-progress-circular>
       </v-overlay>
       <div v-if="props.loadingError" class="d-flex align-center flex-column">
         <h2 class="text-h1 text-error">{{ loadingError?.status }}</h2>
@@ -44,25 +44,33 @@ export default {
       </div>
       <table v-else ref="pageTable" class="w-100">
         <tr>
-          <th v-for="header in props.headers" class="text-primary pa-2" :key="header.key" @click="header.sortable ? sortByHeader(header.key) : undefined" :class="{'cursor-pointer': header.sortable}">
+          <th v-for="header in props.headers" class="text-primary pa-2" :key="header.key"
+            @click="header.sortable ? sortByHeader(header.key) : undefined" :class="{ 'cursor-pointer': header.sortable }">
             {{ header.text }}
-            <v-icon v-if="isSortedBy(header.key) == 'asc'" color="secondary" size="small">mdi-sort-alphabetical-ascending</v-icon>
-            <v-icon v-if="isSortedBy(header.key) == 'desc'" color="secondary" size="small">mdi-sort-alphabetical-descending</v-icon>
+            <v-icon v-if="isSortedBy(header.key) == 'asc'" color="secondary"
+              size="small">mdi-sort-alphabetical-ascending</v-icon>
+            <v-icon v-if="isSortedBy(header.key) == 'desc'" color="secondary"
+              size="small">mdi-sort-alphabetical-descending</v-icon>
           </th>
         </tr>
         <TransitionGroup v-if="!!pageData.length" name="list">
-          <tr v-for="row in pageData" :key="row.id" class="pa-2 cursor-pointer" @click="emit('view', row)" v-element-hover="state=> emit('hover', state ? row : null)">
+          <tr v-for="row in pageData" :key="row.id" class="pa-2 cursor-pointer" @click="emit('view', row)"
+            v-element-hover="state => emit('hover', state ? row : null)">
             <td v-for="header in props.headers" class="pa-2" :key="header.key">
-              <markable-text ignore-case v-if="header.type == 'markableText'" :match="searchTerm" :text="row[header.key]"></markable-text>
+              <markable-text ignore-case v-if="header.type == 'markableText'" :match="searchTerm"
+                :text="row[header.key]"></markable-text>
               <span v-else-if="header.type == 'date'">{{ formatDate(row[header.key]) }}</span>
               <span v-else-if="header.type == 'datetime'">{{ formatDatetime(row[header.key]) }}</span>
-              <span v-else-if="header.type == 'img' "> <img :src="row[header.key]" :alt="row[header.key]" class="img-fluid" ></span>
+              <span v-else-if="header.type == 'img'"> <img :src="row[header.key]" :alt="row[header.key]"
+                  class="img-fluid"></span>
               <span v-else-if="header.type == 'avatar'"> <v-avatar :image="row[header.key]"></v-avatar> </span>
               <span v-else-if="header.type == 'entity'"> {{ row[header.key][header.value!] }} </span>
-              <span v-else-if="header.type == 'state'"> <v-chip :color="row[header.key]['color']" :prepend-icon="row[header.key]['icon']" >{{ row[header.key]['text'] }}</v-chip> </span>
-              <span v-else >{{ row[header.key] }}</span>
+              <span v-else-if="header.type == 'state'"> <v-chip :color="row[header.key]['color']"
+                  :prepend-icon="row[header.key]['icon']">{{ row[header.key]['text'] }}</v-chip> </span>
+              <span v-else>{{ row[header.key] }}</span>
             </td>
-            <table-row-actions :actions="props.actions" @show-actions="emit('showActions', row)" @action="action=> emit('action', {action, row})"></table-row-actions>
+            <table-row-actions :actions="props.actions" @show-actions="emit('showActions', row)"
+              @action="action => emit('action', { action, row })"></table-row-actions>
           </tr>
         </TransitionGroup>
         <tr v-else>
@@ -71,16 +79,19 @@ export default {
           </td>
         </tr>
       </table>
+    </div>
     <div class="pa-4 d-flex justify-start">
       <label for="items-per-page" class="d-inline mt-4 text-primary-darken-1 font-weight-bold">
         {{ t('components.DataTable.itemsPerPage') }}
-        <input class="width-50" type="number" :min="1" :max="props.dataLength" id="items-per-page" v-model="itemsPerPage">
+        <input class="width-50" type="number" :min="1" :max="props.dataLength" id="items-per-page"
+          v-model="itemsPerPage">
       </label>
-        <v-pagination rounded="circle" v-model="currentPage" :length="paginationLength" :total-visible="componentsConfig.paginationTotalVisible"></v-pagination>
-        <h3 class="text-subtitle-1 d-inline mt-4 text-secondary-lighten-3 font-italic"> {{ t('components.DataTable.paginationMessage', {from: startItem, to: endItem, total: dataLength}) }} </h3>
+      <v-pagination rounded="circle" v-model="currentPage" :length="paginationLength"
+        :total-visible="componentsConfig.paginationTotalVisible"></v-pagination>
+      <h3 class="text-subtitle-1 d-inline mt-4 text-secondary-lighten-3 font-italic"> {{
+        t('components.DataTable.paginationMessage', { from: startItem, to: endItem, total: dataLength }) }} </h3>
     </div>
   </div>
-</div>
 </template>
 
 <script setup lang="ts">
@@ -215,28 +226,12 @@ const isSortedBy = (key: string) => {
 </script>
 
 <style scoped>
-.list-move, 
-.list-enter-active,
-.list-leave-active {
-  transition: all 0.5s ease;
-}
-
-.list-enter-from,
-.list-leave-to {
-  opacity: 0;
-  transform: translateX(30px);
-}
-
-.list-leave-active {
-  position: absolute;
-}
-
 tr:hover:not(:first-child) {
   background-color: rgb(var(--v-theme-secondary-lighten-3));
   color: rgb(var(--v-theme-surface));
 }
 
-td{
+td {
   border: 1px solid rgb(var(--v-theme-primary));
 }
 
@@ -245,12 +240,12 @@ td:last-of-type {
   border-left: none;
 }
 
-tr:not(:first-child){
+tr:not(:first-child) {
   border: 1px solid rgb(var(--v-theme-primary));
 }
 
-th, td {
+th,
+td {
   text-align: start;
   min-width: 10em;
-}
-</style>
+}</style>

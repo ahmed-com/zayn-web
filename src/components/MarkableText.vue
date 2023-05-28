@@ -56,6 +56,7 @@
 		if(start?.value !== undefined && start.value < 0) return false;
 		if(end?.value !== undefined && end.value > text.value.length) return false;
 		if(match?.value !== undefined && match.value.length > text.value.length) return false;
+		if(startIndex.value === -1) return false;
 		return true;
 	})
 </script>

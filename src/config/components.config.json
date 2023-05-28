@@ -1,4 +1,5 @@
 {
     "typeadheadMaxLength": 20,
-    "paginationTotalVisible": 3
+    "paginationTotalVisible": 3,
+    "chartMaxLabels": 50
 }

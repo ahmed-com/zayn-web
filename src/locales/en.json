@@ -34,6 +34,31 @@
       "errors":{
         "missingHeader": "Header \"{header}\" is missing"
       }
+    },
+    "MultiStepForm":{
+      "next": "Next",
+      "back": "Back",
+      "submit": "Submit",
+      "cancel": "Cancel",
+      "requiredField": "[{field}] required field",
+      "invalidValue": "[{field}] {rule}",
+      "errorsTitle": "Please fix the following errors:"
+    }
+  },
+  "footer":{
+    "language": "Language",
+    "brand": "ZaynPay",
+    "aboutText": "Zaynpay allows you to pay your bills online, transfer money to your friends and family, and much more.",
+    "titles": {
+      "makeMoneyWithUs": "Make Money",
+      "aboutUs": "About Us"
+    },
+    "links": {
+      "becomeAnAgent": "Become an Agent",
+      "becomeAMerchant": "Become a Merchant",
+      "aboutUs": "About Us",
+      "contactUs": "Contact Us",
+      "legalInformation": "Legal Information"
     }
   }
 }

@@ -6,6 +6,7 @@ import HomeHeader from '../layout/HomeHeader.vue';
 import MainFooter from '../layout/MainFooter.vue';
 import MainLeftSidebar from '../layout/MainLeftSidebar.vue';
 import MapRightSidebar from '../layout/MapRightSidebar.vue';
+import MainRightSidebar from '../layout/MainRightSidebar.vue';
 import PlainHeader from '../layout/PlainHeader.vue';
 
 import Home from '../views/Home.vue';
@@ -195,7 +196,6 @@ const routes: RouteRecordRaw[] = [
 		name: 'Home',
 		components: {
 			main: Home,
-			header: HomeHeader,
 			footer: MainFooter
 		},
 		beforeEnter: T
@@ -208,11 +208,37 @@ const routes: RouteRecordRaw[] = [
 			header: MainHeader,
 			footer: MainFooter,
 			leftDrawer: MainLeftSidebar,
-			rightDrawer: MapRightSidebar,
+			rightDrawer: MainRightSidebar,
 			main: ()=> import('../views/Generic.vue')
 		},
 		beforeEnter: ifAuth,
 		props: {main:true, rightDrawer: true}
+	},
+
+	{
+		path: '/generic-chart',
+		name: 'Chart',
+		components: {
+			header: MainHeader,
+			footer: MainFooter,
+			leftDrawer: MainLeftSidebar,
+			main: ()=> import('../views/GenericChart.vue')
+		},
+			beforeEnter: ifAuth,
+			props: {main:true}
+	},
+
+	{
+		path: '/generic-form',
+		name: 'Form',
+		components: {
+			header: MainHeader,
+			footer: MainFooter,
+			leftDrawer: MainLeftSidebar,
+			main: ()=> import('../views/GenericForm.vue')
+		},
+		beforeEnter: ifAuth,
+		props: {main:true}
 	},
 
 	{
