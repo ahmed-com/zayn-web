@@ -1,4 +1,5 @@
 {
+  "brand": "ZaynPay",
   "message": "hello i18n !!",
   "nested": {
     "msg1": "message 1",

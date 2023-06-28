@@ -116,8 +116,7 @@ const routes: RouteRecordRaw[] = [
 	},
 
 	{
-		path: '/orders',
-		alias: '/users',
+		path: '/dashboard',
 		name: 'Dashboard',
 		beforeEnter: ifAuth,
 		components: {
